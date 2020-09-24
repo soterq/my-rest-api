@@ -58,13 +58,18 @@ public class TaskController {
         }
     }
 
-//    @PostMapping("/{id}")
-//    public void changeSeverity(@PathVariable Long id, Severity severity) {
-//        if (severity == null) {
-//            taskRepository.findById(id).get().setSeverity(Severity.LOW);
-//        } else {
-//            taskRepository.findById(id).get().setSeverity(severity);
-//        }
-//    }
+    @PostMapping("/{id}")
+    public void changeSeverity(@PathVariable Long id, int severityLvl) {
+            switch (severityLvl){
+                case 1:
+                    taskRepository.findById(id).get().setSeverity(Severity.MEDIUM);
+                    break;
+                case 2:
+                    taskRepository.findById(id).get().setSeverity(Severity.HIGH);
+                    break;
+                default:
+                    taskRepository.findById(id).get().setSeverity(Severity.LOW);
+            }
+    }
 
 }
